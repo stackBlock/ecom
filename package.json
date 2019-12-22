@@ -1,0 +1,24 @@
+{
+  "name": "ecom",
+  "version": "1.0.0",
+  "description": "eCommerce training site",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackBlock/ecom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stackBlock/ecom/issues"
+  },
+  "homepage": "https://github.com/stackBlock/ecom#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}
