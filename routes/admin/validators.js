@@ -3,6 +3,14 @@ const usersRepo = require("../../repositories/users.js");
 const log = console.log;
 
 module.exports = {
+  requireTitle: check("title")
+    .trim()
+    .isLength({ min: 5, max: 40 })
+    .withMessage("Title must be between 5 and 40 char long."),
+  requirePrice: check("price")
+    .trim()
+    .toFloat()
+    .isFloat({ min: 1 }),
   requireEmail: check("email")
     .trim()
     .normalizeEmail()
@@ -17,11 +25,11 @@ module.exports = {
   requirePassword: check("password")
     .trim()
     .isLength({ min: 4, max: 20 })
-    .withMessage("Must be between 4 and 20 characters"),
+    .withMessage("Must be between 4 and 20 characters."),
   requirePasswordConfirmation: check("passwordConfirmation")
     .trim()
     .isLength({ min: 4, max: 20 })
-    .withMessage("Must be between 4 and 20 characters")
+    .withMessage("Must be between 4 and 20 characters.")
     .custom((passwordConfirmation, { req }) => {
       log(req.body.password);
       log(passwordConfirmation);
@@ -41,7 +49,7 @@ module.exports = {
         email: email
       });
       if (!user) {
-        throw new Error("Email not found");
+        throw new Error("Email not found.");
       }
     }),
   requireValidPassword: check("password")
@@ -51,7 +59,7 @@ module.exports = {
         email: req.body.email
       });
       if (!user) {
-        throw new Error("Invalid Password");
+        throw new Error("Invalid Password.");
       }
       const validPassword = await usersRepo.comparePasswords(
         user.password,
@@ -59,7 +67,7 @@ module.exports = {
       );
 
       if (!validPassword) {
-        throw new Error("Invalid password");
+        throw new Error("Invalid password.");
       }
     })
 };
